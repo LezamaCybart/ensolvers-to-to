@@ -13,6 +13,9 @@ public class Task {
     @Column(columnDefinition = "boolean default false")
     private Boolean completed;
 
+    @ManyToOne()
+    private Folder folder;
+
     public Long getId() {
         return id;
     }
@@ -35,5 +38,9 @@ public class Task {
 
     public void setCompleted(Boolean completed) {
         this.completed = completed;
+    }
+
+    public Folder getFolder() {
+        return folder;
     }
 }
