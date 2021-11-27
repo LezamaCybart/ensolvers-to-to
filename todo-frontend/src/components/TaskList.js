@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import Task from './Task'
 import taskService from '../services/tasks'
 
-const TaskList = () => {
+const TaskList = ({folderId}) => {
+  console.log(folderId);
   const [tasks, setTasks] = useState([])
   const [editing, setEditing] = useState('')
   const [newTask, setNewTask] = useState('')
 
   useEffect(() => {
     taskService
-      .getAll()
+      .getTasksFromFolder(folderId)
       .then(initialTasks => {
       setTasks(initialTasks)
     })
@@ -22,7 +23,7 @@ const TaskList = () => {
     }
 
     taskService
-      .create(taskObject)
+      .create(taskObject, folderId)
         .then(returnedTask => {
         setTasks(tasks.concat(returnedTask))
         setNewTask('')
