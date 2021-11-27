@@ -22,7 +22,7 @@ public class FolderController {
     }
 
     @PostMapping("/folder")
-    public ResponseEntity<?> addFolder(Folder newFolder) {
+    public ResponseEntity<?> addFolder(@RequestBody Folder newFolder) {
         return new ResponseEntity<>(folderService.addFolder(newFolder), HttpStatus.CREATED);
     }
 

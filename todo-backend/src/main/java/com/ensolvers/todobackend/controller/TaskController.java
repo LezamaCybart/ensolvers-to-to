@@ -21,15 +21,19 @@ public class TaskController {
         return new ResponseEntity<>(taskService.getTasks(), HttpStatus.OK);
     }
 
-    @PostMapping("/task")
-    public ResponseEntity<?> createTask(@RequestBody Task newTask) {
-        return new ResponseEntity<>(taskService.createTask(newTask), HttpStatus.CREATED);
+    @GetMapping("/folder/{id}/task")
+    public ResponseEntity<?> getTasksFromFolder(@PathVariable Long id) {
+        return new ResponseEntity<>(taskService.getTasksFromFolder(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/folder/{folderId}/task")
+    public ResponseEntity<?> createTask(@RequestBody Task newTask, @PathVariable Long folderId) {
+        return new ResponseEntity<>(taskService.createTask(newTask, folderId), HttpStatus.CREATED);
     }
 
     @PutMapping("task/{id}")
     public ResponseEntity<?> updateTask(@RequestBody Task updatedTask, @PathVariable Long id) {
         return new ResponseEntity<>(taskService.updateTask(updatedTask, id), HttpStatus.OK);
-
     }
 
     @DeleteMapping("/task/{id}")

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,6 +15,7 @@ public class Task {
     private Boolean completed;
 
     @ManyToOne()
+    @JoinColumn(name = "folder_id", referencedColumnName = "id")
     private Folder folder;
 
     public Long getId() {
@@ -42,5 +44,9 @@ public class Task {
 
     public Folder getFolder() {
         return folder;
+    }
+
+    public void setFolder(Folder folder) {
+        this.folder = folder;
     }
 }
