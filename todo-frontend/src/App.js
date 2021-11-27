@@ -3,60 +3,60 @@ import Folder from './components/Folder'
 import folderService from './services/folders'
 
 const App = () => {
-  const [tasks, setTasks] = useState([])
-  const [newTask, setNewTask] = useState('')
+  const [folders, setFolders] = useState([])
+  const [newFolder, setNewFolder] = useState('')
 
   useEffect(() => {
     folderService
       .getAll()
-      .then(initialTasks => {
-      setTasks(initialTasks)
+      .then(initialFolders => {
+      setFolders(initialFolders)
     })
   }, [])
 
-  const addTask = (event) => {
+  const addFolder = (event) => {
     event.preventDefault()
-    const taskObject = {
-      name: newTask,
+    const folderObject = {
+      name: newFolder,
     }
 
     folderService
-      .create(taskObject)
-        .then(returnedTask => {
-        setTasks(tasks.concat(returnedTask))
-        setNewTask('')
+      .create(folderObject)
+        .then(returnedFolder => {
+        setFolders(folders.concat(returnedFolder))
+        setNewFolder('')
       })
   }
 
-  const handleTaskChange = (event) => {
+  const handleFolderChange = (event) => {
     console.log(event.target.value)
-    setNewTask(event.target.value)
+    setNewFolder(event.target.value)
   }
 
-  const deleteTaskFromState = (id) => {
-    setTasks(tasks.filter(t => t.id !== id))
+  const deleteFolderFromState = (id) => {
+    setFolders(folders.filter(t => t.id !== id))
   }
 
-  const tasksToShow = tasks
+  const foldersToShow = folders
   //console.log(notes.map(n => n.id === editing))
   return (
     <div>
-      <h1>Tasks</h1>
+      <h1>Folders</h1>
       <ul>
-        {tasksToShow.map(task => 
+        {foldersToShow.map(folder => 
             <Folder
-              key={task.id}
-              task={task} 
-              deleteTaskFromState={() => deleteTaskFromState(task.id)}
+              key={folder.id}
+              task={folder} 
+              deleteFolderFromState={() => deleteFolderFromState(folder.id)}
             />
         )}
       </ul>
-        <form onSubmit={addTask}>
+        <form onSubmit={addFolder}>
           <input
-            value={newTask}
-            onChange={handleTaskChange}
+            value={newFolder}
+            onChange={handleFolderChange}
           />
-          <button type="submit">add task!</button>
+          <button type="submit">add new folder!</button>
         </form>  
       )
     </div>

@@ -2,23 +2,24 @@ import React, { useState } from 'react'
 import folderService from '../services/folders'
 import TaskList from './TaskList'
 
-const Task = ({ task, deleteTaskFromState}) => {
+const Folder = ({ task,  deleteFolderFromState}) => {
   const [viewTasks, setViewTasks] = useState(false)
 
-  const deleteNote = (id) => {
+  const deleteFolder = (id) => {
     folderService
       .deleteFolder(id)
       .then(response => {
-        deleteTaskFromState(id)
+        deleteFolderFromState(id)
       })
   }
   return (
     <li className='note'>
       {task.name} 
       <button onClick={() => setViewTasks(!viewTasks)}>open</button>
-      <button onClick={() => deleteNote(task.id)}>Delete</button>
+      <button onClick={() => deleteFolder(task.id)}>Delete</button>
       {viewTasks ? (
-        <TaskList/>
+        <TaskList
+        />
       ) : (
         <span></span>
       )
@@ -28,4 +29,4 @@ const Task = ({ task, deleteTaskFromState}) => {
   )
 }
 
-export default Task
+export default Folder
