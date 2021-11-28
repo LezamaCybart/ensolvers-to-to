@@ -79,7 +79,7 @@ const TaskList = ({ folderId }) => {
   };
   //console.log(notes.map(n => n.id === editing))
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', zIndex:'100' }}>
       <List
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
@@ -127,7 +127,7 @@ const TaskList = ({ folderId }) => {
               value={newTask}
               onChange={handleTaskChange}
             />
-            <Button variant='outlined' type="submit">add task!</Button>
+            <Button variant='outlined' type="submit" color='inherit'>add task!</Button>
             </Stack>
           </form>
         )}
