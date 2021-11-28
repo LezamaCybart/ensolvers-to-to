@@ -62,7 +62,11 @@ const App = () => {
   const foldersToShow = folders
   //console.log(notes.map(n => n.id === editing))
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', 
+    position: 'fixed',
+    left: '50%',
+    transform: 'translate(-50%)'
+    }}>
       <List
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
