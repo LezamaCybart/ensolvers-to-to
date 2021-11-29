@@ -3,12 +3,11 @@ import Task from "./Task";
 import taskService from "../services/tasks";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Input from "@mui/material/Input";
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import { ListItem } from "@mui/material";
-import ListSubheader from '@mui/material/ListSubheader';
-import List from '@mui/material/List';
+import ListSubheader from "@mui/material/ListSubheader";
+import List from "@mui/material/List";
 
 const TaskList = ({ folderId }) => {
   console.log(folderId);
@@ -79,7 +78,14 @@ const TaskList = ({ folderId }) => {
   };
   //console.log(notes.map(n => n.id === editing))
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', zIndex:'100' }}>
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: 360,
+        bgcolor: "background.paper",
+        zIndex: "100",
+      }}
+    >
       <List
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
@@ -97,42 +103,45 @@ const TaskList = ({ folderId }) => {
           />
         ))}
         <ListItem>
-      <Box
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        {editing !== "" ? (
-          <form onSubmit={updateNote} style={{display: 'inline-flex'}}>
-             <Stack spacing={2} direction="row">
-            <TextField
-              id="outlined-basic"
-              label={newTask}
-              variant="outlined"
-              value={newTask}
-              onChange={handleTaskChange}
-            />
-            <Button variant='outlined' type="submit">update</Button>
-            </Stack>
-          </form>
-        ) : (
-          <form onSubmit={addTask} style={{display: 'inline-flex'}}>
-             <Stack spacing={2} direction="row">
-            <TextField
-              id="outlined-basic"
-              label={newTask}
-              variant="outlined"
-              value={newTask}
-              onChange={handleTaskChange}
-            />
-            <Button variant='outlined' type="submit" color='inherit'>add task!</Button>
-            </Stack>
-          </form>
-        )}
-      </Box>
-
+          <Box
+            sx={{
+              "& > :not(style)": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            {editing !== "" ? (
+              <form onSubmit={updateNote} style={{ display: "inline-flex" }}>
+                <Stack spacing={2} direction="row">
+                  <TextField
+                    id="outlined-basic"
+                    label={newTask}
+                    variant="outlined"
+                    value={newTask}
+                    onChange={handleTaskChange}
+                  />
+                  <Button variant="outlined" type="submit">
+                    update
+                  </Button>
+                </Stack>
+              </form>
+            ) : (
+              <form onSubmit={addTask} style={{ display: "inline-flex" }}>
+                <Stack spacing={2} direction="row">
+                  <TextField
+                    id="outlined-basic"
+                    label={newTask}
+                    variant="outlined"
+                    value={newTask}
+                    onChange={handleTaskChange}
+                  />
+                  <Button variant="outlined" type="submit" color="inherit">
+                    add task!
+                  </Button>
+                </Stack>
+              </form>
+            )}
+          </Box>
         </ListItem>
       </List>
     </Box>
